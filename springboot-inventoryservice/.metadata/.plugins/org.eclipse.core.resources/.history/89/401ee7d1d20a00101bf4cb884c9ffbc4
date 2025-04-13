@@ -1,0 +1,18 @@
+package com.springboot.inventory.springbootinventory;
+
+import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class InventoryService {
+	
+	    private final InventoryRepository inventoryRepository = null;
+        public boolean isInStock(String skuCode) {
+	        return inventoryRepository.findBySkuCode(skuCode)
+	                .map(inventory -> inventory.getStock() > 0)
+	                .orElse(false);
+	    }
+	}
+

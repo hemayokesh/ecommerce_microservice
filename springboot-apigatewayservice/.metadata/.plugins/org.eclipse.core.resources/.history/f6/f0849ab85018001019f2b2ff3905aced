@@ -1,0 +1,21 @@
+# application.yml
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: product-service
+          uri: lb://springbootproduct
+          predicates:
+            - Path=/api/products/**
+
+        - id: inventory-service
+          uri: lb://springbootinventory
+          predicates:
+            - Path=/api/inventory/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
