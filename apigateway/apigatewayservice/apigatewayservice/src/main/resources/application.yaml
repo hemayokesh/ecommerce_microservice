@@ -1,0 +1,26 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/api/products/**
+        - id: inventory-service
+          uri: lb://inventory-service
+          predicates:
+            - Path=/api/inventory/**
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/user/**
+      globalcors:
+        allowed-origins: "http://localhost:3000"  # Allow React frontend
+        allowed-methods: "*"  # Allow all HTTP methods
+        allowed-headers: "*"  # Allow all headers
+        allow-credentials: true  # Allow cookies to be sent if needed
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
