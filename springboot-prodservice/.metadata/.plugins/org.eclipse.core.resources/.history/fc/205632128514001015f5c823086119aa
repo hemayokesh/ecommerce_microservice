@@ -1,5 +1,0 @@
-package com.springboot.product.springbootproduct.dto;
-
-public class InventoryDto {
-
-}
